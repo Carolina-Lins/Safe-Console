@@ -17,9 +17,47 @@ void exibir_hex(const char *texto, int tamanho);
 void exibir_codigos_ascii(const char *texto);
 
 int main(void)
+int main(void)
 {
-    return 0;
+ char texto[TAM_BUFFER];
+ int opcao;
+ do
+ {
+ exibir_menu();
+ if (ler_numero(&opcao) == 0)
+ {
+ opcao = -1;
+ }
+ switch (opcao)
+ {
+ case 1:
+ printf("Digite o dado sensivel: ");
+ ler_string(texto, TAM_BUFFER);
+ mascarar_dados(texto);
+ printf("Dado mascarado: %s\n", texto);
+ break;
+ case 2:
+ printf("Digite a senha: ");
+ ler_string(texto, TAM_BUFFER);
+ if (validar_senha(texto) == 1){
+     printf("Senha valida\n");
+ }
+ else{
+     printf("Senha invalida\n");
+ }
+ mostrar_forca_senha(texto);
+ break;
+ case 0:
+     printf("Encerrando o programa\n");
+     break;
+ default:
+     printf("Opcao invalida\n");
+     break;
+ }
+ } while (opcao != 0);
+ return 0;
 }
+
 
 void ler_string(char *destino, int tamanho)
 {
@@ -47,11 +85,22 @@ void ler_string(char *destino, int tamanho)
 
 int ler_numero(int *numero)
 {
-    return 0;
+ char linha[TAM_BUFFER];
+ ler_string(linha, TAM_BUFFER);
+ if (sscanf(linha, "%d", numero) == 1)
+ {
+ return 1;
+ }
+ return 0;
 }
 
 void exibir_menu(void)
 {
+ printf("\n===== SAFECONSOLE C =====\n");
+ printf("1 - Mascarar dados\n");
+ printf("2 - Validar senha\n");
+ printf("0 - Sair\n");
+ printf("Escolha uma opcao: ");
 }
 
 void mascarar_dados(char *dados)
