@@ -101,6 +101,19 @@ int main(void)
             printf("Mensagem recuperada com a mesma chave: %s\n", texto);
             break;
 
+        case 6:
+            printf("Digite a mensagem: ");
+            ler_string(texto, TAM_BUFFER);
+            aplicar_rot13(texto);
+            printf("Resultado ROT13: %s\n", texto);
+            break;
+        
+        case 7:
+            printf("Digite o texto: ");
+            ler_string(texto, TAM_BUFFER);
+            exibir_codigos_ascii(texto);
+            break
+
         case 0:
             printf("Encerrando o programa\n");
             break;
@@ -159,6 +172,8 @@ void exibir_menu(void)
     printf("3 - Cifrar com Cesar\n");
     printf("4 - Descifrar com Cesar\n");
     printf("5 - Cifrar com XOR (saida em hexadecimal)\n");
+    printf("6 - ROT13 (extra)\n");
+    printf("7 - Codigos ASCII do texto (extra)\n");
     printf("0 - Sair\n");
     printf("Escolha uma opcao: ");
 }
@@ -290,4 +305,10 @@ void exibir_hex(const char *texto, int tamanho)
 
 void exibir_codigos_ascii(const char *texto)
 {
+    int i;
+    int tamanho;
+    tamanho = strlen(texto);
+    for (i = 0; i < tamanho; i++){
+    printf("%c = %d\n", texto[i], (unsigned char)texto[i]);
+ }
 }
