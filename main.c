@@ -255,10 +255,21 @@ void aplicar_rot13(char *texto)
 
 void cifrar_xor(char *texto, int tamanho, char chave)
 {
+    int i;
+    for (i = 0; i < tamanho; i++)
+    {
+        texto[i] = texto[i] ^ chave;
+    }
 }
 
 void exibir_hex(const char *texto, int tamanho)
 {
+    int i;
+    for (i = 0; i < tamanho; i++)
+    {
+        printf("%02X ", (unsigned char)texto[i]);
+    }
+    printf("\n");
 }
 
 void exibir_codigos_ascii(const char *texto)
