@@ -112,7 +112,7 @@ int main(void)
             printf("Digite o texto: ");
             ler_string(texto, TAM_BUFFER);
             exibir_codigos_ascii(texto);
-            break
+            break;
 
         case 0:
             printf("Encerrando o programa\n");
