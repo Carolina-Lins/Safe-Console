@@ -165,7 +165,6 @@ void mascarar_dados(char *dados)
 
 int validar_senha(const char *senha)
 {
- int validar_senha(const char *senha) {
    
 int tamanho;    
 int i;   
@@ -212,11 +211,43 @@ void mostrar_forca_senha(const char *senha)
 
 void cifrar_cesar(char *texto, int deslocamento)
 {
+ int tamanho;
+ int i;
+ deslocamento = ((deslocamento % 26) + 26) % 26;
+ tamanho = strlen(texto);
+ for (i = 0; i < tamanho; i++)
+ {
+ if (texto[i] >= 'A' && texto[i] <= 'Z')
+ {
+ texto[i] = (texto[i] - 'A' + deslocamento) % 26 + 'A';
+ }
+ else if (texto[i] >= 'a' && texto[i] <= 'z')
+ {
+ texto[i] = (texto[i] - 'a' + deslocamento) % 26 + 'a';
+ }
+ }
 }
+
 
 void descifrar_cesar(char *texto, int deslocamento)
 {
+ int tamanho;
+ int i;
+ deslocamento = ((deslocamento % 26) + 26) % 26;
+ tamanho = strlen(texto);
+ for (i = 0; i < tamanho; i++)
+ {
+ if (texto[i] >= 'A' && texto[i] <= 'Z')
+ {
+ texto[i] = (texto[i] - 'A' - deslocamento + 26) % 26 + 'A';
+ }
+ else if (texto[i] >= 'a' && texto[i] <= 'z')
+ {
+ texto[i] = (texto[i] - 'a' - deslocamento + 26) % 26 + 'a';
+ }
+ }
 }
+
 
 void aplicar_rot13(char *texto)
 {
