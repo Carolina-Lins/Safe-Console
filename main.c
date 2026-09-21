@@ -182,8 +182,7 @@ void mascarar_dados(char *dados)
 {
     int tamanho = (int)strlen(dados);
     int i;
-
-    /* Evita comportamento indefinido se a entrada for menor ou igual a 4 caracteres */
+    
     if (tamanho <= 4)
     {
         for (i = 0; i < tamanho; i++)
@@ -238,6 +237,61 @@ int validar_senha(const char *senha)
 
 void mostrar_forca_senha(const char *senha)
 {
+    int tamanho;
+    int i;
+    int pontos = 0;
+    int tem_maiuscula = 0;
+    int tem_minuscula = 0;
+    int tem_numero = 0;
+    int tem_especial = 0;
+
+    tamanho = strlen(senha);
+
+    if (tamanho >= 8)
+    {
+        pontos = pontos + 1;
+    }
+    if (tamanho >= 12)
+    {
+        pontos = pontos + 1;
+    }
+
+    for (i = 0; i < tamanho; i++)
+    {
+        if (senha[i] >= 'A' && senha[i] <= 'Z')
+        {
+            tem_maiuscula = 1;
+        }
+        else if (senha[i] >= 'a' && senha[i] <= 'z')
+        {
+            tem_minuscula = 1;
+        }
+        else if (senha[i] >= '0' && senha[i] <= '9')
+        {
+            tem_numero = 1;
+        }
+        else if (senha[i] != ' ')
+        {
+            tem_especial = 1;
+        }
+    }
+
+    pontos = pontos + tem_maiuscula + tem_minuscula + tem_numero + tem_especial;
+
+    printf("Pontuacao da senha: %d de 6\n", pontos);
+
+    if (pontos <= 3)
+    {
+        printf("Forca da senha: Fraca\n");
+    }
+    else if (pontos <= 5)
+    {
+        printf("Forca da senha: Media\n");
+    }
+    else
+    {
+        printf("Forca da senha: Forte\n");
+    }
 }
 
 void cifrar_cesar(char *texto, int deslocamento)
