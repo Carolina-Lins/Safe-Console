@@ -105,7 +105,15 @@ void exibir_menu(void)
 
 void mascarar_dados(char *dados)
 {
+ int tamanho;
+ int i;
+ tamanho = strlen(dados);
+ for (i = 0; i < tamanho - 4; i++)
+ {
+ dados[i] = '*';
+ }
 }
+
 
 int validar_senha(const char *senha)
 {
