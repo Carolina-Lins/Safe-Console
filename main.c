@@ -117,7 +117,45 @@ void mascarar_dados(char *dados)
 
 int validar_senha(const char *senha)
 {
-    return 0;
+ int validar_senha(const char *senha) {
+   
+int tamanho;    
+int i;   
+int tem_maiuscula = 0;    
+int tem_minuscula = 0;   
+int tem_numero = 0;  
+
+tamanho = strlen(senha);   
+
+ if (tamanho < 8)    
+{        
+return 0;   
+} 
+  
+for (i = 0; i < tamanho; i++)    
+{       
+if (senha[i] >= 'A' && senha[i] <= 'Z')        
+{            
+tem_maiuscula = 1; 
+       
+}       
+ if (senha[i] >= 'a' && senha[i] <= 'z')       
+{           
+ tem_minuscula = 1;        
+
+}       
+ if (senha[i] >= '0' && senha[i] <= '9')       
+{           
+ tem_numero = 1;       
+}   
+
+}    
+
+if (tem_maiuscula == 1 && tem_minuscula == 1 && tem_numero == 1)    
+{        
+return 1;    
+}   
+ return 0; 
 }
 
 void mostrar_forca_senha(const char *senha)
@@ -147,3 +185,4 @@ void exibir_hex(const char *texto, int tamanho)
 void exibir_codigos_ascii(const char *texto)
 {
 }
+
