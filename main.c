@@ -17,10 +17,13 @@ void exibir_hex(const char *texto, int tamanho);
 void exibir_codigos_ascii(const char *texto);
 
 int main(void)
-int main(void)
 {
  char texto[TAM_BUFFER];
  int opcao;
+ char linha[TAM_BUFFER];
+ int deslocamento;
+ int tamanho;
+ char chave;
  do
  {
  exibir_menu();
@@ -46,6 +49,48 @@ int main(void)
      printf("Senha invalida\n");
  }
  mostrar_forca_senha(texto);
+ break;
+  case 3:
+ printf("Digite a mensagem: ");
+ ler_string(texto, TAM_BUFFER);
+ printf("Digite o deslocamento: ");
+ if (ler_numero(&deslocamento) == 0)
+ {
+ printf("Deslocamento invalido\n");
+ break;
+ }
+ cifrar_cesar(texto, deslocamento);
+ printf("Mensagem cifrada: %s\n", texto);
+ break;
+ case 4:
+ printf("Digite a mensagem cifrada: ");
+ ler_string(texto, TAM_BUFFER);
+ printf("Digite o deslocamento: ");
+ if (ler_numero(&deslocamento) == 0)
+ {
+ printf("Deslocamento invalido\n");
+ break;
+ }
+ descifrar_cesar(texto, deslocamento);
+ printf("Mensagem descifrada: %s\n", texto);
+ break;
+ case 5:
+ printf("Digite a mensagem: ");
+ ler_string(texto, TAM_BUFFER);
+ printf("Digite a chave (um caractere): ");
+ ler_string(linha, TAM_BUFFER);
+ if (linha[0] == '\0')
+ {
+ printf("Chave vazia\n");
+ break;
+ }
+ chave = linha[0];
+ tamanho = strlen(texto);
+ cifrar_xor(texto, tamanho, chave);
+ printf("Payload em hexadecimal: ");
+ exibir_hex(texto, tamanho);
+ cifrar_xor(texto, tamanho, chave);
+ printf("Mensagem recuperada com a mesma chave: %s\n", texto);
  break;
  case 0:
      printf("Encerrando o programa\n");
@@ -99,6 +144,9 @@ void exibir_menu(void)
  printf("\n===== SAFECONSOLE C =====\n");
  printf("1 - Mascarar dados\n");
  printf("2 - Validar senha\n");
+ printf("3 - Cifrar com Cesar\n");
+ printf("4 - Descifrar com Cesar\n");
+ printf("5 - Cifrar com XOR (saida em hexadecimal)\n");
  printf("0 - Sair\n");
  printf("Escolha uma opcao: ");
 }
