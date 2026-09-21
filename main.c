@@ -23,6 +23,26 @@ int main(void)
 
 void ler_string(char *destino, int tamanho)
 {
+ int posicao;
+ int c;
+ if (fgets(destino, tamanho, stdin) == NULL)
+ {
+ destino[0] = '\0';
+ return;
+ }
+ posicao = strcspn(destino, "\n");
+ if (destino[posicao] == '\0')
+ {
+ c = getchar();
+ while (c != '\n' && c != EOF)
+ {
+ c = getchar();
+ }
+ }
+ else
+ {
+ destino[posicao] = '\0';
+ }
 }
 
 int ler_numero(int *numero)
