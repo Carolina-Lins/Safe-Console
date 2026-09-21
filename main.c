@@ -282,6 +282,7 @@ void descifrar_cesar(char *texto, int deslocamento)
 
 void aplicar_rot13(char *texto)
 {
+ cifrar_cesar(texto, 13);
 }
 
 void cifrar_xor(char *texto, int tamanho, char chave)
