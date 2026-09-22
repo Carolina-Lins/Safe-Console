@@ -21,6 +21,6 @@ No Windows, use safe_console.exe.
 - Cifra XOR com chave char e exibição do payload em hexadecimal;
 - Menu interativo com do-while e switch;
 ## Funcionalidades extras
-- Classificação da força da senha (Fraca, Meéia ou Forte);
+- Classificação da força da senha (Fraca, Média ou Forte);
 - ROT13;
 - Exibiçãp dos códigos ASCII de um texto.
